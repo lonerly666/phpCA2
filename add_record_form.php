@@ -13,6 +13,7 @@ $statement->closeCursor();
 <?php
 include('includes/header.php');
 ?>
+    <script src="addRecordValidation.js"></script>
         <h1>Add Record</h1>
         <form action="add_record.php" method="post" enctype="multipart/form-data"
               id="add_record_form">
@@ -27,11 +28,13 @@ include('includes/header.php');
             </select>
             <br>
             <label>Name:</label>
-            <input type="input" name="name">
+            <input type="input" name="name" id="name">
+            <span id="nameErr"></span>
             <br>
 
             <label>List Price:</label>
-            <input type="input" name="price">
+            <input type="input" name="price" id="price" pattern="[0-9]{1,5}">
+            <span id="priceErr"></span>
             <br>        
             
             <label>Image:</label>
@@ -39,7 +42,7 @@ include('includes/header.php');
             <br>
             
             <label>&nbsp;</label>
-            <input type="submit" value="Add Record">
+            <input type="submit" value="Add Record" onclick="checkValidation()">
             <br>
         </form>
         <p><a href="index.php">View Homepage</a></p>

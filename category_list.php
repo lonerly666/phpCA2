@@ -14,6 +14,7 @@
 <?php
 include('includes/header.php');
 ?>
+<script src="addRecordValidation.js"></script>
     <h1>Category List</h1>
     <table>
         <tr>
@@ -41,8 +42,10 @@ include('includes/header.php');
           id="add_category_form">
 
         <label>Name:</label>
-        <input type="input" name="name">
-        <input id="add_category_button" type="submit" value="Add">
+        <input type="input" name="name" id="name">
+        
+        <input id="add_category_button" type="submit" value="Add" onclick="checkCategory()">
+        <span id="nameErr"></span>
     </form>
     <br>
     <p><a href="index.php">Homepage</a></p>
