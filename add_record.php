@@ -2,7 +2,7 @@
 
 // Get the product data
 $category_id = filter_input(INPUT_POST, 'category_id', FILTER_VALIDATE_INT);
-$name = filter_input(INPUT_POST, 'name');
+$name = htmlspecialchars(filter_input(INPUT_POST, 'name'));
 $price = filter_input(INPUT_POST, 'price', FILTER_VALIDATE_FLOAT);
 
 // Validate inputs
@@ -69,6 +69,7 @@ $price = filter_input(INPUT_POST, 'price', FILTER_VALIDATE_FLOAT);
     $statement->bindValue(':image', $image);
     $statement->execute();
     $statement->closeCursor();
-
     // Display the Product List page
-    include('index.php');
+    header("Location: index.php");
+    exit();
+?>

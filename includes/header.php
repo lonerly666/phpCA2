@@ -7,3 +7,6 @@
 <!-- the body section -->
 <body>
 <header><h1>NEON Pen Shop</h1></header>
+<form action="logout.php" method="post">
+<button type="submit">Logout</button>
+</form>
