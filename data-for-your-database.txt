@@ -15,7 +15,6 @@ CREATE TABLE `users`(
 `userID` int(11) NOT NULL AUTO_INCREMENT,
 `userName` varchar(30) NOT NULL,
 `password` varchar(50) NOT NULL,
-`age` int(11) NOT NULL,
 `position` varchar(10) NOT NULL,
 PRIMARY KEY(userID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

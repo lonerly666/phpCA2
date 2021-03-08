@@ -1,7 +1,7 @@
 <?php
 require_once('database.php');
 session_start();
-if($_SESSION['isLoggedIn']===true)
+if(isset($_SESSION['isLoggedIn'])&&$_SESSION['isLoggedIn']===true)
 {
     
     header("Location: home.php");
@@ -45,6 +45,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
                 $_SESSION['position'] = $userInfo['position'];
                 $_SESSION['cart']=array();
                 $_SESSION['price']=array();
+                $_SESSION['numOfItem']=0;
                 header("Location: home.php");
                 exit();
             }
@@ -61,26 +62,64 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 
 ?>
 
-<div>
-    <div>
-    <h1>LOGIN</h1>
-    </div>
-    <div>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
-    <label class="login-form">Username</label>
-    <input type="text" id="username" name="username"/>
-    <span class="errMsg">
-    <?php echo $errMsgN; ?>
-    </span>
-    <label class="login-form">Password</label>
-    <input type="password" id="password" name="password"/>
-    <span>
-    <?php echo $errMsgP; ?>
-    </span>
-    <button type="submit">Login</button>
-    <span><?php echo $errMsg ?></span>
-    </form>
-    <p>Haven't Registered Yet? Click <a href="register.php">here</a></p>
-    </div>
+<link rel="stylesheet" type ="text/css" href = "template.css">
+<div class="overlay">
+<!-- LOGN IN FORM by Omar Dsoky -->
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+   <!--   con = Container  for items in the form-->
+   <div class="con">
+   <!--     Start  header Content  -->
+   <header class="head-form">
+      <h2>Log In</h2>
+      <!--     A welcome message or an explanation of the login form -->
+      <p>login here using your username and password</p>
+   </header>
+   <!--     End  header Content  -->
+   <br>
+   <div><h3><?php echo $errMsg; ?></h3></div>
+   <div class="field-set">
+      <!--   user name -->
+         <span class="input-item">
+           <i class="fa fa-user-circle"></i>
+         </span>
+        <!--   user name Input-->
+         <input class="form-input" id="txt-input" type="text" placeholder="@UserName" name="username">
+     
+      <br>
+     
+           <!--   Password -->
+     
+      <span class="input-item">
+        <i class="fa fa-key"></i>
+       </span>
+      <!--   Password Input-->
+      <input class="form-input" type="password" placeholder="Password" id="pwd"  name="password" name="password">
+     
+     
+     
+      <br>
+<!--        buttons -->
+<!--      button LogIn -->
+      <button class="log-in" type="submit"> Log In </button>
+</form>
+   </div>
+  
+<!--   other buttons -->
+   <div class="other">
+<!--      Forgot Password button-->
+      <button class="btn submits frgt-pass"><a href="forgotPass.php" style="text-decoration:none;color:black">Forgot Password</a></button>
+<!--     Sign Up button -->
+    <button class="btn submits sign-up" onClick="window.location='register.php';" ><a href="register.php" style="text-decoration:none;color:black">Sign Up</a>
+<!--         Sign Up font icon -->
+      <i class="fa fa-user-plus" aria-hidden="true"></i>
+      </button>
+<!--      End Other the Division -->
+   </div>
+     
+<!--   End Conrainer  -->
+  </div>
+  
+  <!-- End Form -->
 
-</div>  
+</div>
+ 

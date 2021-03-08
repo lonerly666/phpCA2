@@ -1,6 +1,7 @@
 <?php
     require_once('database.php');
-
+    session_start();
+$currentUser  = $_SESSION['userName'];
     // Get all categories
     $query = 'SELECT * FROM categories
               ORDER BY categoryID';
@@ -15,6 +16,7 @@
 include('includes/header.php');
 ?>
 <script src="addRecordValidation.js"></script>
+<div class="categoryTable">
     <h1>Category List</h1>
     <table>
         <tr>
@@ -29,27 +31,30 @@ include('includes/header.php');
                       id="delete_product_form">
                     <input type="hidden" name="category_id"
                            value="<?php echo $category['categoryID']; ?>">
-                    <input type="submit" value="Delete">
+                    <input type="submit" value="-">
                 </form>
             </td>
         </tr>
         <?php endforeach; ?>
     </table>
+        </div>
     <br>
-
+    <div class="action">
     <h2>Add Category</h2>
     <form action="add_category.php" method="post"
           id="add_category_form">
 
         <label>Name:</label>
-        <input type="input" name="name" id="name">
+        <input type="input" name="name" id="name" class="name_input" autocomplete="off">
         
-        <input id="add_category_button" type="submit" value="Add" onclick="checkCategory()">
+        <input id="add_category_button" type="submit" value="+" onclick="checkCategory()" class="addCategory">
         <span id="nameErr"></span>
     </form>
+        </div>
     <br>
+    <div class="homePage">
     <p><a href="index.php">Homepage</a></p>
-
+        </div>
     <?php
 include('includes/footer.php');
 ?>

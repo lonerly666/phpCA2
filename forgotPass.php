@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once("database.php");
 $username = "";
 $password = "";
@@ -25,13 +25,13 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         $statement = $db -> prepare($query);
         $statement -> bindValue(':username',$username);
         $statement -> execute();
-        if($statement-> rowCount()==1)
+        if($statement-> rowCount()==0)
         {
-            $errMsg ="This name has been taken!";
+            $errMsg ="Name do not exist!";
         }
         else
         {
-            $query = 'INSERT INTO users (userName,password,position) VALUES (:username,:password,"Customer")';
+            $query = 'UPDATE users SET password = (:password) WHERE userName = (:username)';
             $statement = $db -> prepare($query);
             $statement -> bindValue(':username',$username);
             $statement -> bindValue(':password',$password);
@@ -42,9 +42,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         }
     }
 }
-
 ?>
-
 <link rel="stylesheet" type ="text/css" href = "template.css">
 <div class="overlay">
 <!-- LOGN IN FORM by Omar Dsoky -->
@@ -53,7 +51,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
    <div class="con">
    <!--     Start  header Content  -->
    <header class="head-form">
-      <h2>REGISTER</h2>
+      <h2>RESET PASSWORD</h2>
       <!--     A welcome message or an explanation of the login form -->
       <p>login here using your username and password</p>
    </header>
@@ -93,7 +91,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
       <br>
 <!--        buttons -->
 <!--      button LogIn -->
-      <button class="log-in" type="submit"> Register </button>
+      <button class="log-in" type="submit"> Change Password </button>
 </form>
 <div style="text-align:center;"><a href="index.php" style="text-decoration:none;">Back To Login</a></div>
    </div>
@@ -106,4 +104,3 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
   <!-- End Form -->
 
 </div>
- 

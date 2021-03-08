@@ -1,17 +1,17 @@
 /* Body starts Here*/
 body {
-    background-color: #ccc;
+    background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
+    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+    background-attachment: fixed;
+      background-repeat: no-repeat;
+    
+        font-family: 'Vibur', cursive;
+    /*   the main font */
+        font-family: 'Abel', sans-serif;
+    opacity: .95;
 }
 
-.container {
-    /* margin-top: 0; */
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
-    margin: 0 auto;
-    background-color: white;
-    border: 1px solid black;
 
-}
 section {
     float: left;
     width: 800PX;
@@ -26,21 +26,17 @@ li {
     padding: 0;
 }
 a {
-    color: rgb(41, 64, 124);
+    color: rgb(240, 85, 111);
     font-weight: bold;
-}
-a:hover {
-    color: rgb(208, 133, 4);
 }
 table {
     border: 1px solid black;
     border-collapse: collapse;
 }
 td, th {
-    border: 1px dashed black;
     padding: .2em .5em .2em .5em;
-    vertical-align: top;
-    text-align: left;
+    vertical-align:middle;
+    text-align: center;
 }
 form {
     margin: 0;
@@ -79,3 +75,328 @@ br {
     display: table;
     clear: both;
   }
+  table th
+  {
+      border:1px solid black;
+  }
+  #lists
+  {
+      margin-left: 300px;
+      width: 1000px;
+      height: 580px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+  }
+  #items
+  {
+      display:flex;
+      margin-top: 20px;
+      height: 250px;
+      width: 1000px;
+      border: 1px solid whitesmoke;
+      border-radius: 30px;
+  }
+  #image-border
+  {
+      margin-top:10px;
+      margin-left: 10px;
+      width:300px;
+      height:90%;
+      border:1px solid black;
+      border-radius: 50px;
+  }
+  #desc
+  {
+      margin-left: 80px;
+      margin-top:30px;
+      
+  }
+  #name{
+      margin-left: 10px;
+  }
+  #price
+  {
+      margin-top:10px;
+  }
+.buttons
+{
+    margin-left:auto;
+    margin-right:auto;
+}
+#photo
+{
+    width:100%;
+    height: 100%;
+}
+.addCart
+{
+
+    margin-left: 100px;
+    text-align: center;
+}
+.addCart h1
+{
+    margin-top:30px;
+}
+.addCart button{
+    margin-top:50px;
+    outline:none;
+    border:none;
+    height:30px;
+    width:30px;
+    font-size: 25px;
+    color: white;
+    background-color:lawngreen;
+    border-radius: 30px;
+}
+#adminBut
+{
+    border-left: 1px solid white;
+    width: 150px;
+    height:100%;
+}
+.delete
+{
+    text-align: center;
+    margin-top:50px;
+}
+.delete input
+{
+    outline:none;
+    border:none;
+    background-color: blanchedalmond;
+    height: 50px;
+    width:80px;
+    border-radius: 100px;
+}
+.edit
+{
+    text-align: center;
+    margin-top:20px;
+}
+.edit input{
+    outline:none;
+    border:none;
+    background-color: blanchedalmond;
+    height: 50px;
+    width:80px;
+    border-radius: 100px;
+}
+#itemBrand
+{
+    width:200px;
+    font-size: 30px;
+    margin-left: 350px;
+    text-align: center;
+
+}
+#labels
+{
+    font-size: 40px;
+    font-weight: bold;
+}
+select
+{
+    outline:none;
+    border:none;
+    width:200px;
+    height: 50px;
+    border-radius: 50px;
+    text-align-last:center; 
+    font-size: 20px;
+    background: blanchedalmond;
+}
+.checkout
+{
+    float: right;
+    text-align: center;
+}
+.checkout button{
+    outline:none;
+    border: none;
+    height:50px;
+    width:100px;
+    border-radius: 30px;
+    font-size: 15px;
+    background: green;
+    color: white;
+}
+.numOfItem
+{
+    text-align: center;
+    z-index: 10;
+    background: red;
+    position:absolute;
+    right:10px;
+    top:95px;
+    height:20px;
+    width: 20px;
+    border-radius: 10px;
+    color: white;
+}
+.manager
+{
+
+    text-align: center;
+    margin-left: 400px;
+    margin-top: 100px;
+    width: 100%;
+}
+.manager p
+{
+    font-size: 20px;
+    transition: .3s linear;
+}
+.manager p:hover
+{
+    font-size: 25px;
+}
+.manager a
+{
+    text-decoration: none;
+    color: whitesmoke;
+}
+.categoryTable
+{
+    text-align: center;
+}
+
+.categoryTable table
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    height: 10%;
+}
+.categoryTable input
+{
+    outline:none;
+    border:none;
+    height:30px;
+    width: 30px;
+    border-radius: 30px;
+    background: rgb(236, 69, 69);
+    color: whitesmoke;
+    font-size: 20px;
+}
+.action
+{
+    text-align: center;
+}
+.name_input
+{
+    outline: none;
+    border: none;
+    background: none;
+    height: 50px;
+    border-bottom: 1px solid whitesmoke;
+    text-align: center;
+    font-size: 15px;
+    color: rgb(233, 123, 141);
+}
+.addCategory
+{
+    outline: none;
+    border: none;
+    background: rgb(56, 155, 56);
+    height: 30px;
+    width:30px;
+    border-radius: 30px;
+    text-align: center;
+    font-size: 25px;
+    color: whitesmoke;
+}
+.homePage
+{
+    text-align: center;
+}
+.homePage p
+{
+    color: white;
+}
+.homePage a
+{
+    text-decoration: none;
+}
+.addRecord
+{
+    text-align: center;
+}
+.recordAction {
+    text-align: center;
+}
+.recordAction input
+{
+    outline:none;
+    border:none;
+    border-bottom: 1px solid whitesmoke;
+    text-align: center;
+    font-size: 20px;
+    width: 300px;
+    background: transparent;
+    margin-top: 20px;
+}
+#addR
+{
+    width:30px;
+    height: 30px;
+    background: rgb(51, 158, 51);
+    color: whitesmoke;
+    border-radius: 30px;
+}
+#saveChange:active
+{
+    color: whitesmoke;
+}
+#checkout
+{
+    border:1px solid whitesmoke;
+    text-align: center;
+    height:500px;
+}
+#item-list
+{
+    display: flex;
+    margin-bottom: 10px;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+#quantity
+{
+
+  margin-left: 110px;
+}
+#item-name
+{
+    margin-left: 150px;
+    width: 100px;
+}
+.choice
+{
+    text-align: center;
+}
+.choice a
+{
+    text-decoration: none;
+}
+.choice a:hover{
+    color: whitesmoke;
+}
+#filter
+{
+    outline:none;
+    border:none;
+    margin-top: 10px;
+    height:80px;
+    width:200px;
+    font-size: 20px;
+    border-radius: 30px;
+    background-color: transparent;
+    transition: .3s linear;
+}
+#filter:hover
+{
+    color:white;
+}

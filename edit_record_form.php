@@ -1,6 +1,7 @@
 <?php
 require('database.php');
-
+session_start();
+$currentUser  = $_SESSION['userName'];
 $query = 'SELECT *
           FROM categories
           ORDER BY categoryID';
@@ -25,14 +26,13 @@ $statement->closeCursor();
 include('includes/header.php');
 ?>
 <script src="addRecordValidation.js"></script>
+<div class="addRecord">
         <h1>Edit Product</h1>
         <form action="edit_record.php" method="post" enctype="multipart/form-data"
               id="add_record_form">
             <input type="hidden" name="original_image" value="<?php echo $records['image']; ?>" />
             <input type="hidden" name="record_id"
                    value="<?php echo $records['recordID']; ?>">
-
-            <label>Category:</label>
             <select name="category_id">
             <?php foreach ($categories as $category) : ?>
                 <option value="<?php echo $category['categoryID']; ?>">
@@ -41,20 +41,21 @@ include('includes/header.php');
             <?php endforeach; ?>
             </select>
             <br>
-
-            <label>Name:</label>
+            </div>
+            <div class="recordAction">
+            <label>Name</label><br>
             <input type="input" name="name" id="name"
                    value="<?php echo $records['name']; ?>">
                    <span id="nameErr"></span>
             <br>
 
-            <label>List Price:</label>
+            <br><label>List Price</label><br>
             <input type="input" name="price" id="price" pattern="[0-9]{1,5}"
                    value="<?php echo $records['price']; ?>">
                    <span id="priceErr"></span>
             <br>
-
-            <label>Image:</label>
+            <br>
+            <label>Image</label><br>
             <input type="file" name="image" accept="image/*" />
             <br>            
             <?php if ($records['image'] != "") { ?>
@@ -62,10 +63,12 @@ include('includes/header.php');
             <?php } ?>
             
             <label>&nbsp;</label>
-            <input type="submit" value="Save Changes" onclick="checkValidation()">
+            <input type="submit" value="Save" onclick="checkValidation()" id="saveChange">
             <br>
         </form>
-        <p><a href="index.php">View Homepage</a></p>
+            </div>
+
+        <div class="homePage"><p><a href="index.php">View Homepage</a></p></div>
     <?php
 include('includes/footer.php');
 ?>

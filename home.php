@@ -4,16 +4,35 @@ session_start();
 
 $currentUser  = $_SESSION['userName'];
 $status = $_SESSION['position'];
-$numOfItem =0;
 
 
 if($_SERVER["REQUEST_METHOD"]==="POST")
-{
+{   
+    
     $price= trim($_POST['recordPrice']);
     $item = trim($_POST['recordName']);
     array_push($_SESSION['price'],$price);
-    array_push($_SESSION['cart'],$item);
-    $numOfItem = count($_SESSION['cart']);
+    if(empty($_SESSION['cart']))
+    {
+       $_SESSION['cart']+=[$item=>1];
+    }
+    else
+    {
+        foreach($_SESSION['cart'] as $a=>$f)
+        {
+            if($a==$item)
+            {
+                $_SESSION['cart'][$item]++;
+            }
+            else
+            {
+                $_SESSION['cart']+=[$item=>1];
+            }
+        }
+    }
+
+    
+    $_SESSION['numOfItem']+=1;
 }
 
 
@@ -67,81 +86,101 @@ include('includes/header.php');
 
 <aside>
 <!-- display a list of categories -->
-<h2>Categories</h2>
-<nav>
-<ul>
+<label id="labels">Categories</label><br>
+<form>
+<select name='category_id'>
 <?php foreach ($categories as $category) : ?>
-<li><a href=".?category_id=<?php echo $category['categoryID']; ?>">
+
+<option value="<?php echo $category['categoryID'] ?>">
 <?php echo $category['categoryName']; ?>
-</a>
-</li>
+</option>
+
 <?php endforeach; ?>
-</ul>
-</nav>          
+</select>
+
+<input type="submit" id="filter"/>
+</form>
 </aside>
 
 <section>
 <!-- display a table of records -->
-<h2><?php echo $category_name; ?></h2>
-<table>
-<tr>
-<th>Image</th>
-<th>Name</th>
-<th>Price</th>
-<th>Add To Cart</th>
-<?php  if($status==="Admin"){ ?>
-<th>Delete</th>
-<th>Edit</th>
-<?php } ?>
-</tr>
+<h2 id="itemBrand"><?php echo $category_name; ?></h2>
+<div id="lists">
 <?php foreach ($records as $record) : ?>
-<tr>
-<td><img src="image_uploads/<?php echo $record['image']; ?>" width="100px" height="100px" /></td>
-<td><?php echo $record['name']; ?></td>
 
-<td class="right"><?php echo $record['price']; ?></td>
+<div id="items">
+    <div id="image-border">
+        <img src="image_uploads/<?php echo $record['image']; ?>" width="100px" height="100px" id="photo"/>
+    </div>
+    <div id="desc">
+    <h1>Name</h1>
+         <div id="name">
+             
+         <?php echo $record['name']; ?>
+         </div><br>
+         <h1>Price</h1>
+         <div id="price">
+             
+         <?php echo $record['price']; ?>
+         </div>
+    </div>
+    
+    <div class="buttons addCart">
+    <h1>Add To Cart</h1>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <input type="hidden" name="recordName"
+    value="<?php echo $record['name']; ?>">
+    <input type="hidden" name="recordPrice"
+    value="<?php echo $record['price']; ?>">
+    <button type="submit">+</button>
+    </form>
+    </div>
+    
+    <?php if($status==="Admin"){ ?>
+        <div id="adminBut">
+    <div class="buttons delete">
+        <form action="delete_record.php" method="post"
+        id="delete_record_form">
+        <input type="hidden" name="record_id"
+        value="<?php echo $record['recordID']; ?>">
+        <input type="hidden" name="category_id"
+        value="<?php echo $record['categoryID']; ?>">
+        <input type="submit" value="Delete">
+        </form>
+    </div>
 
-<td><form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-<input type="hidden" name="recordName"
-value="<?php echo $record['name']; ?>">
-<input type="hidden" name="recordPrice"
-value="<?php echo $record['price']; ?>">
-<button type="submit">+</button>
-</form></td>
-
-<?php if($status==="Admin"){ ?>
-    <td><form action="delete_record.php" method="post"
-    id="delete_record_form">
-    <input type="hidden" name="record_id"
-    value="<?php echo $record['recordID']; ?>">
-    <input type="hidden" name="category_id"
-    value="<?php echo $record['categoryID']; ?>">
-    <input type="submit" value="Delete">
-    </form></td>
-
-    <td><form action="edit_record_form.php" method="post"
-    id="delete_record_form">
-    <input type="hidden" name="record_id"
-    value="<?php echo $record['recordID']; ?>">
-    <input type="hidden" name="category_id"
-    value="<?php echo $record['categoryID']; ?>">
-    <input type="submit" value="Edit">
-    </form></td>
-<?php } ?>
+    <div class="buttons edit">
+        <form action="edit_record_form.php" method="post"
+        id="delete_record_form">
+        <input type="hidden" name="record_id"
+        value="<?php echo $record['recordID']; ?>">
+        <input type="hidden" name="category_id"
+        value="<?php echo $record['categoryID']; ?>">
+        <input type="submit" value="Edit">
+        </form>
+        </div>
+    </div>
+    <?php } ?>
+</div>
 
 
 
 
-</tr>
 <?php endforeach; ?>
-</table>
+    </div>
+<?php  if($status==="Admin"){ ?>
+<div class="manager">
 <p><a href="add_record_form.php">Add Record</a></p>
 <p><a href="category_list.php">Manage Categories</a></p>
+</div>
+<?php };?>
 </section>
+<div class="checkout">
 <form action="checkout.php" method="post">
 <button type="submit">checkout</button>
-<span><?php echo $numOfItem ?></span>
+<span class="numOfItem"><?php echo $_SESSION['numOfItem'] ?></span>
 </form>
+</div>
 <?php
 include('includes/footer.php');
 ?>

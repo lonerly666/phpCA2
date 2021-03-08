@@ -1,20 +1,36 @@
 /* Header starts Here*/
-
-header {
-    margin: 0;
-    border-bottom: 2px solid black;
+.title-head
+{
+    width: 100%;
+    display:flex;
     text-align: center;
 }
-header h1 {
-    margin: 0;
-    padding: .5em 0;
-    color: black;
+.title-head h1
+{
+  
+    margin-left: auto;
+    margin-right: auto;
 }
-nav ul {
-    list-style-type: none;
-    margin-left: 0;
-    padding-left: 0;
+.welcome
+{
+    font-size: 20px;
+    margin-left: 20px;
+    padding: 10px;
+    text-align: center;
 }
-nav ul li {
-    padding-bottom: 0.5em;
+#logout
+{
+    outline:none;
+    border:none;
+    border-radius: 10px;
+    height:30px;
+    width: 70px;
+    color: whitesmoke;
+    cursor: pointer;
+    background-color:burlywood;
+    transition:.3s ease-in-out;
+}
+#logout:hover
+{
+    width:80px;
 }
