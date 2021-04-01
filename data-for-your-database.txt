@@ -23,6 +23,7 @@ PRIMARY KEY(userID)
 INSERT INTO users(userID,userName,password,position) VALUES (0,"admin","admin123","Admin");
 
 
+
 CREATE TABLE `records` (
   `recordID` int(11) NOT NULL AUTO_INCREMENT,
   `categoryID` int(11) NOT NULL,
