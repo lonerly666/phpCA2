@@ -11,6 +11,7 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+
 CREATE TABLE `users`(
 `userID` int(11) NOT NULL AUTO_INCREMENT,
 `userName` varchar(30) NOT NULL,
@@ -19,7 +20,9 @@ CREATE TABLE `users`(
 PRIMARY KEY(userID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO users(userID,userName,password,position) VALUES (0,"admin","admin123",Admin);
+INSERT INTO users(userID,userName,password,position) VALUES (0,"admin","admin123","Admin");
+
+
 
 CREATE TABLE `records` (
   `recordID` int(11) NOT NULL AUTO_INCREMENT,
