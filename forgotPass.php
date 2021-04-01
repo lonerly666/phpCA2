@@ -43,64 +43,50 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     }
 }
 ?>
+<html>
+<head>
 <link rel="stylesheet" type ="text/css" href = "template.css">
-<div class="overlay">
-<!-- LOGN IN FORM by Omar Dsoky -->
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-   <!--   con = Container  for items in the form-->
-   <div class="con">
-   <!--     Start  header Content  -->
-   <header class="head-form">
-      <h2>RESET PASSWORD</h2>
-      <!--     A welcome message or an explanation of the login form -->
-      <p>login here using your username and password</p>
-   </header>
-   <!--     End  header Content  -->
-   <br>
-   <div><h3><?php echo $errMsg; ?></h3></div>
-   <div class="field-set">
-      <!--   user name -->
-         <span class="input-item">
-           <i class="fa fa-user-circle"></i>
-         </span>
-        <!--   user name Input-->
-         <input class="form-input" id="txt-input" type="text" placeholder="@UserName" name="username">
-     
-      <br>
-     
-           <!--   Password -->
-     
-      <span class="input-item">
-        <i class="fa fa-key"></i>
-       </span>
-      <!--   Password Input-->
-      <input class="form-input" type="password" placeholder="Password" id="pwd"  name="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$">
-     
-     
-     
-      <br>
 
-      <span class="input-item">
-        <i class="fa fa-key"></i>
-       </span>
-      <!--   Password Input-->
-      <input class="form-input" type="password" placeholder="Confirm Password" id="pwd"  name="repassword">
-     
-     
-     
-      <br>
-<!--        buttons -->
-<!--      button LogIn -->
-      <button class="log-in" type="submit"> Change Password </button>
-</form>
-<div style="text-align:center;"><a href="index.php" style="text-decoration:none;">Back To Login</a></div>
-   </div>
-  
+</head>
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form action="#">
+			<h1>Create Account</h1>
+			<div class="social-container">
 
-     
-<!--   End Container  -->
-  </div>
-  
-  <!-- End Form -->
-
+			</div>
+			<input type="text" placeholder="Username" />
+			<input type="password" placeholder="Password" />
+			<button>Sign Up</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+			<h1>RESET PASSWORD</h1>
+			<div class="social-container">
+      <?php
+      echo $errMsg;
+      ?>
+			</div>
+			<input type="text" placeholder="Username" name="username"/>
+			<input type="password" placeholder="Password" name="password"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" />
+      <input type="password" placeholder="Confirm Password" name="repassword"/>
+			<button>Reset</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+                <h1>Back To Login</h1>
+				<p>Already Registered?</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h3>Back To Login</h3>
+				<button class="ghost" id="signUp"><a href = "index.php" style="color:white;">Sign In</a></button>
+			</div>
+		</div>
+	</div>
 </div>
+
+</html> 
