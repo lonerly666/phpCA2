@@ -20,6 +20,7 @@ CREATE TABLE `users`(
 PRIMARY KEY(userID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
 INSERT INTO users(userID,userName,password,position) VALUES (0,"admin","admin123","Admin");
 
 
