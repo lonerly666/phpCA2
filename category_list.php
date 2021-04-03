@@ -18,7 +18,7 @@ include('includes/header.php');
 <script src="addRecordValidation.js"></script>
 <div class="categoryTable">
     <h1>Category List</h1>
-    <table>
+    <table class="catList">
         <tr>
             <th>Name</th>
             <th>&nbsp;</th>
@@ -37,23 +37,20 @@ include('includes/header.php');
         </tr>
         <?php endforeach; ?>
     </table>
-        </div>
     <br>
     <div class="action">
     <h2>Add Category</h2>
     <form action="add_category.php" method="post"
           id="add_category_form">
 
-        <label>Name:</label>
+        <label style="color:white;">Name:</label>
         <input type="input" name="name" id="name" class="name_input" autocomplete="off">
         
-        <input id="add_category_button" type="submit" value="+" onclick="checkCategory()" class="addCategory">
-        <span id="nameErr"></span>
+        <input id="add_category_button" type="submit" value="+" onclick="checkCategory()" class="addCategory"><br><br>
+        <span id="nameErr" style="color:white;"></span>
     </form>
         </div>
     <br>
-    <div class="homePage">
-    <p><a href="index.php">Homepage</a></p>
         </div>
     <?php
 include('includes/footer.php');

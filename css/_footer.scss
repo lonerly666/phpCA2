@@ -1,14 +1,14 @@
 /* Footer starts Here*/
 footer {
-    position:fixed;
-    bottom: 0;
-    clear: both;
-    margin-top: 1em;
-    width: 100%;
-    border-top: 2px solid black;
-}
-footer p {
-    text-align: center;
-    font-size: 80%;
-    margin: 1em 0;
+	position: absolute;
+	bottom: -50;
+	clear: both;
+	width: 100%;
+	border-top: 2px solid black;
+	p {
+		text-align: center;
+		font-size: 80%;
+		margin: 1em 0;
+		color: black;
+	}
 }

@@ -4,6 +4,7 @@ session_start();
 
 $currentUser  = $_SESSION['userName'];
 $status = $_SESSION['position'];
+$categoryId;
 
 if($_SERVER["REQUEST_METHOD"]==="POST")
 {   
@@ -33,27 +34,18 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
     
     $_SESSION['numOfItem']+=1;
 }
-function toggleEdit()
-{
-    $showEdit = !$showEdit;
-}
-
-
-
-// Get category ID
-if (!isset($category_id)) {
-$category_id = filter_input(INPUT_GET, 'category_id', 
+if (isset($_GET['category_id'])) {
+    $_SESSION['category'] = filter_input(INPUT_GET, 'category_id', 
 FILTER_VALIDATE_INT);
-if ($category_id == NULL || $category_id == FALSE) {
-$category_id = 1;
 }
-}
+
+
 
 // Get name for current category
 $queryCategory = "SELECT * FROM categories
 WHERE categoryID = :category_id";
-$statement1 = $db->prepare($queryCategory);
-$statement1->bindValue(':category_id', $category_id);
+$statement1 = $db->prepare($queryCategory); 
+$statement1->bindValue(':category_id', $_SESSION['category']);
 $statement1->execute();
 $category = $statement1->fetch();
 $statement1->closeCursor();
@@ -67,7 +59,7 @@ $queryRecords = "SELECT * FROM records
 WHERE categoryID = :category_id
 ORDER BY recordID";
 $statement3 = $db->prepare($queryRecords);
-$statement3->bindValue(':category_id', $category_id);
+$statement3->bindValue(':category_id', $_SESSION['category']);
 $statement3->execute();
 $records = $statement3->fetchAll();
 $statement3->closeCursor();
@@ -81,7 +73,7 @@ $statement3->closeCursor();
 include('includes/header.php');
 ?>
 
-<h1 id="itemBrand"><?php echo $category_name; ?></h1>
+<h1 id="itemBrand" style="color:black;"><?php echo $category_name; ?></h1>
 
 
 <?php foreach ($records as $record) : ?>
@@ -130,15 +122,13 @@ include('includes/header.php');
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
     <input type="hidden" name="recordName"
     value="<?php echo $record['name']; ?>">
-    <input type="hidden" name="recordPrice"
+    <input type="hidden" name="recordPrice" 
     value="<?php echo $record['price']; ?>">
     <button type="submit" class="buyBtn">+</button>
     </form>
     </div>
     </div>
-</div>
-<br>
-<br>
+</div>  
 <?php endforeach; ?>
 <?php
 include('includes/footer.php');

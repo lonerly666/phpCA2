@@ -46,6 +46,7 @@ $errMsg="";
                     $_SESSION['cart']=array();
                     $_SESSION['price']=array();
                     $_SESSION['numOfItem']=0;
+                    $_SESSION['category']=1;
                     header("Location: home.php");
                     exit();
                 }
