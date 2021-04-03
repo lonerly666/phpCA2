@@ -26,8 +26,8 @@ $statement->closeCursor();
 include('includes/header.php');
 ?>
 <script src="addRecordValidation.js"></script>
-<div class="addRecord">
-        <h1>Edit Product</h1>
+<div class="recordDiv">
+        <h1 style="color:white;">Edit Product</h1>
         <form action="edit_record.php" method="post" enctype="multipart/form-data"
               id="add_record_form">
             <input type="hidden" name="original_image" value="<?php echo $records['image']; ?>" />
@@ -41,25 +41,29 @@ include('includes/header.php');
             <?php endforeach; ?>
             </select>
             <br>
-            </div>
             <div class="recordAction">
+            <div class="recDet">
             <label>Name</label><br>
             <input type="input" name="name" id="name"
-                   value="<?php echo $records['name']; ?>">
+                   value="<?php echo $records['name']; ?>" class="recN">
                    <span id="nameErr"></span>
+            </div>
             <br>
-
+            <div class="recDet">
             <br><label>List Price</label><br>
             <input type="input" name="price" id="price" pattern="[0-9]{1,5}"
-                   value="<?php echo $records['price']; ?>">
+                   value="<?php echo $records['price']; ?>" class="recN">
                    <span id="priceErr"></span>
+            </div>
             <br>
             <br>
+            <div class="recDet">
             <label>Image</label><br>
             <input type="file" name="image" accept="image/*" />
             <br>            
             <?php if ($records['image'] != "") { ?>
             <p><img src="image_uploads/<?php echo $records['image']; ?>" height="150" /></p>
+            </div>
             <?php } ?>
             
             <label>&nbsp;</label>
@@ -67,8 +71,7 @@ include('includes/header.php');
             <br>
         </form>
             </div>
-
-        <div class="homePage"><p><a href="index.php">View Homepage</a></p></div>
+            </div>
     <?php
 include('includes/footer.php');
 ?>
