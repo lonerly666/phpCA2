@@ -1,13 +1,14 @@
 <?php
 require_once("database.php");
-$username = "";
+session_start();
 $password = "";
 $rePassword = "";
 $errMsg = "";
 $errMsgRP="";
+$email  = $_SESSION['email'];
 if($_SERVER["REQUEST_METHOD"]=="POST")
 {
-    if(empty(trim($_POST['username']))||empty(trim($_POST['password']))||empty(trim($_POST['repassword'])))
+    if(empty(trim($_POST['password']))||empty(trim($_POST['repassword'])))
     {
         $errMsg = "Please fill in all fields";
     }
@@ -17,29 +18,18 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     }
     else
     {
-        $username = htmlspecialchars(trim($_POST['username']));
         $password = htmlspecialchars(trim($_POST['password']));
         $rePassword = htmlspecialchars(trim($_POST['repassword']));
-
-        $query = 'SELECT userName FROM users WHERE userName = (:username)';
-        $statement = $db -> prepare($query);
-        $statement -> bindValue(':username',$username);
-        $statement -> execute();
-        if($statement-> rowCount()==0)
-        {
-            $errMsg ="Name do not exist!";
-        }
-        else
-        {
-            $query = 'UPDATE users SET password = (:password) WHERE userName = (:username)';
+            $hash = password_hash($password, 
+             PASSWORD_DEFAULT);
+            $query = 'UPDATE users SET password = (:password) WHERE email = :email';
             $statement = $db -> prepare($query);
-            $statement -> bindValue(':username',$username);
-            $statement -> bindValue(':password',$password);
+            $statement -> bindValue(':email',$email);
+            $statement -> bindValue(':password',$hash);
             $statement -> execute();
             $statement -> closeCursor();
             header("Location: index.php");
             exit();
-        }
     }
 }
 ?>
@@ -68,7 +58,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
       echo $errMsg;
       ?>
 			</div>
-			<input type="text" placeholder="Username" name="username"/>
 			<input type="password" placeholder="Password" name="password"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" />
       <input type="password" placeholder="Confirm Password" name="repassword"/>
 			<button>Reset</button>

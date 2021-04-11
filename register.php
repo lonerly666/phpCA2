@@ -15,12 +15,16 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     {
         $errMsg = "Passwords do not match !";
     }
+    elseif(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
+    {
+        $errMsg = "Invalid Email Format!";
+    }
     else
     {
         $username = htmlspecialchars(trim($_POST['username']));
         $password = htmlspecialchars(trim($_POST['password']));
         $rePassword = htmlspecialchars(trim($_POST['repassword']));
-
+        $email = htmlspecialchars(trim($_POST['email']));
         $query = 'SELECT userName FROM users WHERE userName = (:username)';
         $statement = $db -> prepare($query);
         $statement -> bindValue(':username',$username);
@@ -31,10 +35,13 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         }
         else
         {
-            $query = 'INSERT INTO users (userName,password,position) VALUES (:username,:password,"Customer")';
+            $hash = password_hash($password, 
+             PASSWORD_DEFAULT);
+            $query = 'INSERT INTO users (userName,password,position,email) VALUES (:username,:password,"Customer",:email)';
             $statement = $db -> prepare($query);
             $statement -> bindValue(':username',$username);
-            $statement -> bindValue(':password',$password);
+            $statement -> bindValue(':password',$hash);
+            $statement -> bindValue(':email',$email);
             $statement -> execute();
             $statement -> closeCursor();
             header("Location: index.php");
@@ -71,6 +78,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
       ?>
 			</div>
 			<input type="text" placeholder="Username" name="username"/>
+            <input type="text" placeholder="Email Address" name="email"/>
 			<input type="password" placeholder="Password" name="password"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" />
       <input type="password" placeholder="Confirm Password" name="repassword"/>
 			<button>Sign Up</button>

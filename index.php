@@ -35,8 +35,10 @@ $errMsg="";
                 $errMsg = "You have not registered yet!";
             }
             else
-            {
-                if($userInfo['password']===$password)
+            {   
+                $hash = $userInfo['password'];
+                $verify = password_verify($password,$hash);
+                if($verify)
                 {
                     session_start();
                     $_SESSION['isLoggedIn']=true;
