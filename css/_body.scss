@@ -154,6 +154,24 @@ p {
 	margin-bottom: auto;
 	margin-left: auto;
 	margin-right: 10px;
+    display: flex;
+}
+.addItem
+{
+    border:none;
+    outline:none;
+    background-color: transparent;
+    color: white;
+    font-size: 25px;
+    margin-right: 20px;
+    &:hover
+    {
+        cursor: pointer;
+    }
+    &:active
+    {
+        font-size: 24px;
+    }
 }
 .contact-form
 {
@@ -196,16 +214,19 @@ p {
     border:none;
     height:50px;
     width: 100px;
-    background-color: black;
-    color: yellow;
+    background-color: transparent;
+    color: whitesmoke;
     border-radius: 20px;
     font-size: 20px;
     left:50%;
     transform: translate(-50%,-50%);
+    transition: .4s ease;
 }
 .submitContact:hover
 {
     cursor: pointer;
+    color: rgb(89, 247, 57);
+    background-color: rgb(43, 36, 36);
 }
 .detail-input
 {
@@ -347,4 +368,62 @@ p {
     border:none;
     border:1px solid whitesmoke;    
     color: whitesmoke;
+}
+.orderList
+{
+    margin-top: 20px;
+    background-color: rgb(58, 52, 52);
+    color: white;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 30px;
+}
+.orderList td
+{
+    padding:30px;
+    text-align: center;
+}
+.totalCost
+{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(58, 52, 52);
+    border-radius: 30px;
+    margin-top:5px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    
+}
+#email
+{
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 20px;
+    color: #707070;
+}
+#emailInput
+{
+    text-align: center;
+}
+#pay
+{
+    width:80px;
+    height:50px;
+    margin-top: 10px;
+    transition:.3s ease;
+    border-radius: 30px;
+    &:hover
+    {
+        background-color: gray; 
+        color: whitesmoke;
+        cursor: pointer;
+    }
+}
+#errName
+{
+    color:rgb(223, 53, 11);
 }

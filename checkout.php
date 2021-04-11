@@ -8,8 +8,37 @@ foreach($_SESSION['price'] as $price)
 }
 $prices = array_unique($_SESSION['price']);
 $counts  = $_SESSION['numOfItem'];
-
-
+$tracking = array();
+if($_SERVER["REQUEST_METHOD"]==="POST")
+{
+    if(isset($_POST['plus']))
+    {
+        foreach($_SESSION['cart']as $a => $f)
+        {
+            if($a==$_POST['recordName'])
+            {
+                $_SESSION['cart'][$_POST['recordName']]++;
+            }
+        }
+        $_SESSION['numOfItem']+=1;
+    } 
+    if(isset($_POST['minus']))
+    {
+        foreach($_SESSION['cart']as $a => $f)
+        {
+            if($a==$_POST['recordName'])
+            {
+                $_SESSION['cart'][$_POST['recordName']]--;
+                if($_SESSION['cart'][$_POST['recordName']]==0)
+                {
+                    unset($_SESSION['cart'][$_POST['recordName']]);
+                    unset($_SESSION['productDetails'][$_POST['recordName']]);
+                }
+            }
+        }
+        $_SESSION['numOfItem']-=1;
+    } 
+}
 
 ?>
 <link rel="stylesheet" type ="text/css" href = "css/mystyle.css">
@@ -33,25 +62,28 @@ $counts  = $_SESSION['numOfItem'];
 <div id="checkout">
     <div class="checkoutList">
     <h1>Checkout List</h1>
-    <p>You have ordered <?php echo $counts ?> items</p><br>
+    <p>You have ordered <?php echo $_SESSION['numOfItem'] ?> items</p><br>
     <?php foreach($_SESSION['cart'] as $a=> $l): ?>
         <div id="item-list">
            <div id="item-name"><?php echo $a ?></div>
-           <div id="quantity">x <?php echo $l ?></div>
+           <div id="quantity">
+           <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <input type="hidden" name="recordName"
+            value="<?php echo $a; ?>">
+            <input type="submit" class="addItem" value="&plus;" name="plus"/>
+            <input type="submit" class="addItem" value="&#8722;" name="minus"/>
+           </form>
+           x <?php echo $l ?>
+           </div>        
         </div>
-
         <?php endforeach; ?>
     </div>
         
 
 <div class="choice"><br><br>
-<div class="totalCost">
-        <h1>Total Cost</h1>
-        <h3>€ <?php echo $total ?></h3>
-        </div><br>
     <a href="home.php">Continue Shopping</a><br><br>
-    <?php if($total>0) {?>
-    <a href="pay.php">PAY NOW!</a>
+    <?php if($_SESSION['numOfItem']>0) {?>
+    <a href="paymentDetails.php">PAY NOW!</a>
     <?php }?>
 </div>
 </div>
