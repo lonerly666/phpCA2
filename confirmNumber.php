@@ -23,7 +23,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
 		<form action="#">
-			<h1>Create Account</h1>
+			<h1>Create Account </h1>
+            
 			<div class="social-container">
 
 			</div>
@@ -35,6 +36,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 	<div class="form-container sign-in-container">
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 			<h1>A 5 digits number have been sent to your email</h1>
+            <?php echo $confirm ?>
 			<div class="social-container">
       <?php
       echo $errMsg;

@@ -26,7 +26,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         }
         else
         {
-            $_SESSION['a'] = $result;
             $myemail = "D00217043@student.dkit.ie";
             $confirm = rand(10000,99999);
             $to = $email;
@@ -37,6 +36,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
             $headers .= "Reply-To: $email";
             mail($to,$subject,$body,$headers);
             $_SESSION['number'] = $confirm;
+            $_SESSION['email'] = $email;
             header("Location: confirmNumber.php");
         }
         
