@@ -94,7 +94,7 @@ $errMsg="";
 			</div>
 			<input type="text" placeholder="Username" name="username"/>
 			<input type="password" placeholder="Password" name="password"/>
-			<a href="forgotPass.php">Forgot your password?</a>
+			<a href="checkEmail.php">Forgot your password?</a>
 			<button name="signIn">Sign In</button>
 		</form>
 	</div>
