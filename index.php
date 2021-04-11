@@ -45,6 +45,7 @@ $errMsg="";
                     $_SESSION['position'] = $userInfo['position'];
                     $_SESSION['cart']=array();
                     $_SESSION['price']=array();
+                    $_SESSION['productDetails'] = array();
                     $_SESSION['numOfItem']=0;
                     $_SESSION['category']=1;
                     header("Location: home.php");
@@ -71,7 +72,7 @@ $errMsg="";
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-			<h1>Create Account</h1>
+			<h1>CREATE ACCOUNT</h1>
 			<div class="social-container" id="signUpErr">
             <?php
             echo $errMsg;
@@ -85,7 +86,7 @@ $errMsg="";
 	</div>
 	<div class="form-container sign-in-container">
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-			<h1>Sign in</h1>
+			<h1>SIGN IN</h1>
 			<div class="social-container">
             <?php
             echo $errMsg;

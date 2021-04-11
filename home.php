@@ -1,7 +1,11 @@
 <?php
 require_once('database.php');
 session_start();
-
+if($_SESSION['isLoggedIn']==false)
+{
+    header("Location: index.php");
+    exit();
+}
 $currentUser  = $_SESSION['userName'];
 $status = $_SESSION['position'];
 $categoryId;
@@ -15,6 +19,7 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
     if(empty($_SESSION['cart']))
     {
        $_SESSION['cart']+=[$item=>1];
+       $_SESSION['productDetails']+=[$item=>$price];
     }
     else
     {
@@ -27,6 +32,13 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
             else
             {
                 $_SESSION['cart']+=[$item=>1];
+            }
+        }
+        foreach($_SESSION['productDetails'] as $p => $c)
+        {
+            if($p != $item)
+            {
+                $_SESSION['productDetails']+=[$item => $price];
             }
         }
     }

@@ -27,7 +27,17 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
     }
     if(empty($errors))
     {
-        header('Location: contact_form-handler.php');
+        $to = $email_address; 
+        $email_subject = "Inquiries Form: $name";
+        $email_body = "This is a bot mail please do not reply. ".
+        " Here are the details:\n Name: $name \n Email: $email_address \n Message \n $message"; 
+        
+        $headers = "From: $myemail\n"; 
+        $headers .= "Reply-To: $email_address";
+        
+        mail($to,$email_subject,$email_body,$headers);
+        header('Location: home.php');
+        exit();
     }
 }
 }
@@ -43,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
             <?php if($_SESSION['numOfItem']>0){ ?>
             <div class="numOfItems"><p><?php echo $_SESSION['numOfItem']?></p></div>
             <?php }; ?>
-            </form> 
+            </form>   
             </div>
             <div class="r_header">
         <input class="menu-btn" type="checkbox" id="menu-btn" />
@@ -63,7 +73,7 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
     <h1>INQUIRIES</h1>
         <div class="details">
-        <h2><?php echo $errors;  ?></h2>
+        <h2 id="err"><?php echo $errors;  ?></h2>
         <div class="detail-input">
         <label for='name'>Your Name:</label> <br>
         <input type="text" name="name" class="inputDet">
@@ -76,10 +86,16 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
         <label for='message'>Message:</label> <br>
         <textarea name="message" class="inputDet"></textarea>
         </div>
-        <input type="submit" value="Submit" class = "submitContact"><br>
+        <input type="submit" value="Submit" class = "submitContact" onclick="toggleAlert()"><br>
     </form>
     </div>
  </div>
+ <script>
+ function toggleAlert()
+ {
+     alert("Thank you! We will contact you soon.");
+ }
+ </script>
     <?php
     include('includes/footer.php');
     ?>
