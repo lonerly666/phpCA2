@@ -40,6 +40,7 @@ $errMsg="";
                 $verify = password_verify($password,$hash);
                 if($verify)
                 {
+                    session_destroy();
                     session_start();
                     $_SESSION['isLoggedIn']=true;
                     $_SESSION['userID'] = $userInfo['userID'];

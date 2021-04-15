@@ -79,7 +79,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 			</div>
 			<input type="text" placeholder="Username" name="username"/>
             <input type="text" placeholder="Email Address" name="email"/>
-			<input type="password" placeholder="Password" name="password"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" />
+			<input type="password" placeholder="Password" name="password"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-,.]).{8,12}$" id="password"/>
       <input type="password" placeholder="Confirm Password" name="repassword"/>
 			<button>Sign Up</button>
 		</form>
@@ -98,5 +98,16 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 		</div>
 	</div>
 </div>
-
+<div class="centered" id="centered">
+<ul>
+  <li class="lowercase-char">At least one lowercase character</li>
+  <li class="uppercase-char">At least one uppercase character</li>
+  <li class="number-char">At least one number</li>
+  <li class="special-char">At least one special character !@#$%^&*_=+-,.</li>
+  <li class="8-char">At least 8 characters</li>
+  <li class="success hide">All Set! Good To Go!</li>
+</ul>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"></script>
+<script src="register.js"></script>
 </html> 
