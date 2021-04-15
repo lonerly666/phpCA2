@@ -70,30 +70,41 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
         </div>
     </div>
     <div class="contact-form">
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="toggleAlert()">
     <h1>INQUIRIES</h1>
         <div class="details">
         <h2 id="err"><?php echo $errors;  ?></h2>
         <div class="detail-input">
         <label for='name'>Your Name:</label> <br>
-        <input type="text" name="name" class="inputDet">
+        <input type="text" name="name" class="inputDet" id="name">
         </div>
         <div class="detail-input"> 
         <label for='email'>Email Address:</label> <br>
-        <input type="text" name="email" class="inputDet"> <br>
+        <input type="text" name="email" class="inputDet" id="email"> <br>
         </div>
         <div class="detail-input"> 
         <label for='message'>Message:</label> <br>
-        <textarea name="message" class="inputDet"></textarea>
+        <textarea name="message" class="inputDet" id="msg"></textarea>
         </div>
-        <input type="submit" value="Submit" class = "submitContact" onclick="toggleAlert()"><br>
+        <input type="submit" value="Submit" class = "submitContact"><br>
     </form>
     </div>
  </div>
  <script>
  function toggleAlert()
  {
+     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+     let name = document.getElementById("name").value;
+     let email = document.getElementById("email").value;
+     let message = document.getElementById("msg").value;
+     if(name===""||email===""||message==="")
+     {
+         event.preventDefault();
+     }
+     else if(re.test(email))
+     {
      alert("Thank you! We will contact you soon.");
+     }
  }
  </script>
     <?php

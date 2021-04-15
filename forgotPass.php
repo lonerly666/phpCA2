@@ -58,7 +58,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
       echo $errMsg;
       ?>
 			</div>
-			<input type="password" placeholder="Password" name="password"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-,.]).{8,12}$" id="password"/>
+			<input type="password" placeholder="Password" name="password"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])([-+=_!@#$%^&*.,;:'\<>/?`~]).{8,12}$" id="password"/>
       <input type="password" placeholder="Confirm Password" name="repassword"/>
 			<button>Reset</button>
 		</form>
@@ -82,7 +82,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
   <li class="lowercase-char">At least one lowercase character</li>
   <li class="uppercase-char">At least one uppercase character</li>
   <li class="number-char">At least one number</li>
-  <li class="special-char">At least one special character !@#$%^&*_=+-,.</li>
+  <li class="special-char">At least one special character [-+=_!@#$%^&*.,;:'\<>/?`~]</li>
   <li class="8-char">At least 8 characters</li>
   <li class="success hide">All Set! Good To Go!</li>
 </ul>
