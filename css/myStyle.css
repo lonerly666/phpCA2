@@ -366,6 +366,14 @@ p {
   color: whitesmoke;
   border-radius: 30px;
   font-size: 25px;
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
+}
+
+.buyBtn:hover {
+  cursor: pointer;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
 }
 
 #checkout {
@@ -475,6 +483,7 @@ p {
   color: white;
   text-align: center;
   background-color: transparent;
+  font-size: 20px;
 }
 
 .submitContact {
@@ -572,6 +581,14 @@ p {
   color: whitesmoke;
   border-radius: 40px;
   font-size: 30px;
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
+}
+
+#addR:hover {
+  cursor: pointer;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
 }
 
 .categoryTable {
@@ -634,6 +651,14 @@ p {
   height: 35px;
   border-radius: 40px;
   cursor: pointer;
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
+}
+
+.addCategory:hover {
+  cursor: pointer;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
 }
 
 .imageUp {

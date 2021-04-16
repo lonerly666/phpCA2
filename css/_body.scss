@@ -110,6 +110,11 @@ p {
 	color: whitesmoke;
 	border-radius: 30px;
 	font-size: 25px;
+    transition:.5s ease;
+    &:hover {
+		cursor: pointer;
+		transform: rotate(180deg);
+	}
 }
 #checkout {
 	position: relative;
@@ -205,6 +210,7 @@ p {
     color: white;
     text-align: center;
     background-color: transparent;
+    font-size: 20px;
 }
 .submitContact
 {
@@ -300,6 +306,11 @@ p {
     color: whitesmoke;
     border-radius: 40px;
     font-size: 30px;
+    transition:.5s ease;
+    &:hover {
+		cursor: pointer;
+		transform: rotate(180deg);
+	}
 }
 .categoryTable
 {
@@ -361,6 +372,11 @@ p {
     height: 35px;
     border-radius: 40px;
     cursor: pointer;
+    transition:.5s ease;
+    &:hover {
+		cursor: pointer;
+		transform: rotate(180deg);
+	}
 }
 .imageUp
 {

@@ -80,7 +80,7 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
         </div>
         <div class="detail-input"> 
         <label for='email'>Email Address:</label> <br>
-        <input type="text" name="email" class="inputDet" id="email"> <br>
+        <input type="text" name="email" class="inputDet" id="email" style="width:300px;color:white;"> <br>
         </div>
         <div class="detail-input"> 
         <label for='message'>Message:</label> <br>
@@ -99,6 +99,7 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
      let message = document.getElementById("msg").value;
      if(name===""||email===""||message==="")
      {
+         document.getElementById("err").innerHTML = "Please fill in all fields";
          event.preventDefault();
      }
      else if(re.test(email))

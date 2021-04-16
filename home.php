@@ -128,7 +128,7 @@ include('includes/header.php');
          <div id="price">
         <p>€ <?php echo $record['price']; ?></p>
          </div>
-    
+    <?php if($_SESSION['position']=="Customer"){ ?>
     <div class="addCart">
     <h1>Add To Cart</h1>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -139,6 +139,7 @@ include('includes/header.php');
     <button type="submit" class="buyBtn">+</button>
     </form>
     </div>
+    <?php }; ?>
     </div>
 </div>  
 <?php endforeach; ?>
