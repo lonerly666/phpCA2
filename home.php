@@ -73,7 +73,7 @@ ORDER BY recordID";
 $statement3 = $db->prepare($queryRecords);
 $statement3->bindValue(':category_id', $_SESSION['category']);
 $statement3->execute();
-$records = $statement3->fetchAll();
+$records = $statement3->fetchAll(); 
 $statement3->closeCursor();
 
 ?>

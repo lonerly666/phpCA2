@@ -25,13 +25,21 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         $password = htmlspecialchars(trim($_POST['password']));
         $rePassword = htmlspecialchars(trim($_POST['repassword']));
         $email = htmlspecialchars(trim($_POST['email']));
-        $query = 'SELECT userName FROM users WHERE userName = (:username)';
+        $query = 'SELECT * FROM users WHERE userName = (:username)';
         $statement = $db -> prepare($query);
         $statement -> bindValue(':username',$username);
         $statement -> execute();
         if($statement-> rowCount()==1)
         {
             $errMsg ="This name has been taken!";
+        }
+        $query = 'SELECT * FROM users WHERE email = (:email)';
+        $statement = $db -> prepare($query);
+        $statement -> bindValue(':email',$email);
+        $statement -> execute();
+        if($statement-> rowCount()==1)
+        {
+            $errMsg ="This email has been taken!";
         }
         else
         {

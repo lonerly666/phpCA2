@@ -35,7 +35,13 @@ if($_SERVER["REQUEST_METHOD"]==="POST")
         $headers = "From: $myemail\n"; 
         $headers .= "Reply-To: $email_address";
         
-        mail($to,$email_subject,$email_body,$headers);
+        mail($to,$email_subject,$email_body,$headers);//send to users to confirm
+
+        $subject = "Inquiry from $name";
+        $content = "Message: $message";
+        $head = "From : $email_address";
+        $head .="Reply-To: $myemail";
+        mail($myemail,$subject,$content,$head);
         header('Location: home.php');
         exit();
     }
