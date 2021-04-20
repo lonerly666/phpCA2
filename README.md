@@ -18,6 +18,6 @@ To get started, first download Xammp to start a server https://www.apachefriends
 D00217043@student.dkit.ie
 
 # Live Website
-https://mysql04.comp.dkit.ie/D00217043/pen-shop%20CA/index.php
+https://mysql04.comp.dkit.ie/D00217043/neonPenShop/index.php
 
 
